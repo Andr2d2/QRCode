@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <title>QRcodeToMaps</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body ng-app="qrcodetomaps" class="container">
+    <div class="container" ng-controller="HomeController as vm">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label>Texto</label>
+                    <textarea class="form-control" rows="3" ng-model="vm.qrcode.texto"></textarea>
+
+                    <label>URL imagem central (opcional)</label>
+                    <input type="text" class="form-control" ng-model="vm.qrcode.img">
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="vm.gerar(vm.qrcode)">Gerar código</button>
+            </div>
+            <div class="col-md-4">
+                <div class="well" ng-if="vm.textValue">
+                    <qrcode text="vm.textValue" size="300" middle-icon="vm.img">Não carregou</qrcode>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="node_modules/qrcodejs/qrcode.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="app/components/qrcode/qrcode.component.js"></script>
+    <script src="app/modules/app.module.js"></script>
+    <script src="app/controllers/HomeController.js"></script>
+</body>
+
+</html>
