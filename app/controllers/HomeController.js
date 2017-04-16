@@ -21,6 +21,8 @@
 
             vm.textValue = obj.texto;
             vm.img = obj.img;
+            vm.maps = (obj.address ? true : false);
+            vm.address = obj.address;
         }
     }
 })();
