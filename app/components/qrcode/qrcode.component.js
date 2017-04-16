@@ -13,7 +13,9 @@
             bindings: {
                 text: '<',
                 size: '<',
-                middleIcon: '<'
+                middleIcon: '<',
+                adress:'<',
+                maps:'<'
             }
         }
     };
@@ -40,7 +42,7 @@
 
         function _onDestory() {
             qrcodeArea.clear();
-        };
+        }
 
         function _generate() {
             qrcodeArea = document.getElementById('qrcode');
@@ -54,8 +56,15 @@
                 qrcodeArea.appendChild(middleImg);
             }
 
-            if (!vm.text) {
+            if (!vm.text && !vm.maps) {
                 throw ('qrcode - text binding undefined');
+            }
+            
+            if(vm.maps && vm.adress){
+                var concatAdress = vm.adress.replace(' ', '+');
+                vm.text = 'https://www.google.com/maps/dir/Current+Location/' + concatAdress;
+            } else {
+                throw('qrcode - for address, insert address and maps true binding');
             }
 
             var config = {
